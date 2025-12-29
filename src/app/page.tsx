@@ -42,7 +42,7 @@ const features = [
   },
 ];
 
-const carouselSlides = [
+const carouselSlidesData = [
   {
     id: 'slide-1',
     imageId: 'hero-background',
@@ -75,10 +75,7 @@ const carouselSlides = [
     buttonText: 'Try AI Suite',
     buttonLink: '/marketing-suite',
   },
-].map(slide => {
-  const image = PlaceHolderImages.find(img => img.id === slide.imageId);
-  return { ...slide, image };
-}).filter(slide => slide.image);
+];
 
 
 type DotButtonProps = {
@@ -101,6 +98,11 @@ export default function Home() {
   const [api, setApi] = useState<CarouselApi>()
   const [current, setCurrent] = useState(0)
   const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
+
+  const carouselSlides = carouselSlidesData.map(slide => {
+    const image = PlaceHolderImages.find(img => img.id === slide.imageId);
+    return { ...slide, image };
+  }).filter(slide => slide.image);
 
   const onDotButtonClick = useCallback(
     (index: number) => {
