@@ -1,3 +1,100 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "hero-background",
+      "description": "A lush green hydroponics farm with fish tanks, illustrating the synergy of aquaponics.",
+      "imageUrl": "https://images.unsplash.com/photo-1737963194174-9ab15f1cfa75?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxhcXVhcG9uaWNzJTIwZmFybXxlbnwwfHx8fDE3NjcwMDAxOTd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "aquaponics farm"
+    },
+    {
+      "id": "article-farming-techniques",
+      "description": "An overhead shot of various modern farming techniques.",
+      "imageUrl": "https://images.unsplash.com/photo-1580982327559-c1202864eb05?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxmYXJtaW5nJTIwdGVjaG5vbG9neXxlbnwwfHx8fDE3NjcwMDAxOTd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "farming technology"
+    },
+    {
+      "id": "article-market-trends",
+      "description": "A bustling market scene with fresh produce.",
+      "imageUrl": "https://images.unsplash.com/photo-1514425263458-109317cc1321?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxmYXJtZXJzJTIwbWFya2V0fGVufDB8fHx8MTc2Njk5NDYxNnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "farmers market"
+    },
+    {
+      "id": "article-sustainability",
+      "description": "Hands holding a sprout, symbolizing sustainability.",
+      "imageUrl": "https://images.unsplash.com/photo-1591104955069-1634dd952a90?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxzdXN0YWluYWJpbGl0eSUyMGdyb3d0aHxlbnwwfHx8fDE3NjY5NjExODV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "sustainability growth"
+    },
+    {
+      "id": "article-pest-control",
+      "description": "Close-up of a healthy plant leaf, free of pests.",
+      "imageUrl": "https://images.unsplash.com/photo-1635572228167-9790f56d843a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxoZWFsdGh5JTIwcGxhbnR8ZW58MHx8fHwxNzY2OTc5MjQ4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "healthy plant"
+    },
+    {
+      "id": "product-tilapia",
+      "description": "Freshly harvested tilapia fish on ice.",
+      "imageUrl": "https://images.unsplash.com/photo-1731552466029-4c267f786be4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHx0aWxhcGlhJTIwZmlzaHxlbnwwfHx8fDE3NjY4ODg3MDl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "tilapia fish"
+    },
+    {
+      "id": "product-trout",
+      "description": "Rainbow trout in a clear water tank.",
+      "imageUrl": "https://images.unsplash.com/photo-1689709105115-e11810b6c425?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxyYWluYm93JTIwdHJvdXR8ZW58MHx8fHwxNzY3MDAwMTk3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "rainbow trout"
+    },
+    {
+      "id": "product-catfish",
+      "description": "A channel catfish being held by a farmer.",
+      "imageUrl": "https://images.unsplash.com/photo-1607629266071-7995da0fdf28?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxjYXRmaXNoJTIwZmFybXxlbnwwfHx8fDE3NjcwMDAxOTd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "catfish farm"
+    },
+    {
+      "id": "product-lettuce",
+      "description": "Crisp, green hydroponic lettuce.",
+      "imageUrl": "https://images.unsplash.com/photo-1744451472267-ae65e6e51096?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxoeWRyb3BvbmljJTIwbGV0dHVjZXxlbnwwfHx8fDE3NjcwMDAxOTd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "hydroponic lettuce"
+    },
+    {
+      "id": "product-tomatoes",
+      "description": "Vine-ripened tomatoes in a greenhouse.",
+      "imageUrl": "https://images.unsplash.com/photo-1690841709988-ae470c4d7a30?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxncmVlbmhvdXNlJTIwdG9tYXRvZXN8ZW58MHx8fHwxNzY3MDAwMTk3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "greenhouse tomatoes"
+    },
+    {
+      "id": "product-herbs",
+      "description": "A variety of fresh herbs like basil and mint.",
+      "imageUrl": "https://images.unsplash.com/photo-1662422325326-19089df23d98?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxmcmVzaCUyMGhlcmJzfGVufDB8fHx8MTc2NzAwMDE5N3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "fresh herbs"
+    },
+    {
+      "id": "team-member-1",
+      "description": "Portrait of the CEO.",
+      "imageUrl": "https://images.unsplash.com/photo-1581065178047-8ee15951ede6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxwcm9mZXNzaW9uYWwlMjBwb3J0cmFpdHxlbnwwfHx8fDE3NjY5NzY0MTR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "professional portrait"
+    },
+    {
+      "id": "team-member-2",
+      "description": "Portrait of the Head of Horticulture.",
+      "imageUrl": "https://images.unsplash.com/photo-1551836022-deb4988cc6c0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxwcm9mZXNzaW9uYWwlMjB3b21hbnxlbnwwfHx8fDE3NjY5NzEwMjl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "professional woman"
+    },
+    {
+      "id": "team-member-3",
+      "description": "Portrait of the Head of Fishery.",
+      "imageUrl": "https://images.unsplash.com/photo-1542596768-5d1d21f1cf98?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxwZXJzb24lMjBzbWlsaW5nfGVufDB8fHx8MTc2Njk2NjAyNnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "person smiling"
+    },
+    {
+      "id": "team-member-4",
+      "description": "Portrait of the Marketing Director.",
+      "imageUrl": "https://images.unsplash.com/photo-1655994688032-67a1b6474cf3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHx3b21hbiUyMG91dGRvb3JzfGVufDB8fHx8MTc2Njk1NTEwOXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "woman outdoors"
+    },
+    {
+      "id": "about-us-mission",
+      "description": "Two people shaking hands in a greenhouse.",
+      "imageUrl": "https://images.unsplash.com/photo-1686771416282-3888ddaf249b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxidXNpbmVzcyUyMGhhbmRzaGFrZXxlbnwwfHx8fDE3NjY5ODYzMDd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "business handshake"
+    }
+  ]
 }
