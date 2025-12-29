@@ -42,6 +42,45 @@ const features = [
   },
 ];
 
+const carouselSlides = [
+  {
+    id: 'slide-1',
+    imageId: 'hero-background',
+    title: 'AquaBloom Connect',
+    subtitle: 'Sustainably Cultivating the Future of Fishery and Horticulture',
+    buttonText: 'Learn More',
+    buttonLink: '/about',
+  },
+  {
+    id: 'slide-2',
+    imageId: 'article-farming-techniques',
+    title: 'Explore Our Resources',
+    subtitle: 'Access expert articles, guides, and best practices.',
+    buttonText: 'View Resources',
+    buttonLink: '/resources',
+  },
+  {
+    id: 'slide-3',
+    imageId: 'product-lettuce',
+    title: 'Fresh from Farm to Table',
+    subtitle: 'Discover high-quality products in our marketplace.',
+    buttonText: 'Shop Now',
+    buttonLink: '/marketplace',
+  },
+  {
+    id: 'slide-4',
+    imageId: 'product-trout',
+    title: 'Grow Your Business',
+    subtitle: 'Leverage our AI tools to boost your marketing and sales.',
+    buttonText: 'Try AI Suite',
+    buttonLink: '/marketing-suite',
+  },
+].map(slide => {
+  const image = PlaceHolderImages.find(img => img.id === slide.imageId);
+  return { ...slide, image };
+}).filter(slide => slide.image);
+
+
 type DotButtonProps = {
   selected: boolean;
   onClick: () => void;
@@ -59,13 +98,6 @@ const DotButton = ({ selected, onClick }: DotButtonProps) => (
 );
 
 export default function Home() {
-  const carouselImages = [
-    'hero-background',
-    'article-farming-techniques',
-    'product-lettuce',
-    'product-trout',
-  ].map((id) => PlaceHolderImages.find((img) => img.id === id)).filter(Boolean) as (typeof PlaceHolderImages)[0][];
-
   const [api, setApi] = useState<CarouselApi>()
   const [current, setCurrent] = useState(0)
   const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
@@ -110,38 +142,43 @@ export default function Home() {
             ]}
             >
           <CarouselContent>
-            {carouselImages.map((image, index) => (
-              <CarouselItem key={image.id}>
-                <Image
-                  src={image.imageUrl}
-                  alt={image.description}
-                  fill
-                  className="object-cover"
-                  priority={index === 0}
-                  data-ai-hint={image.imageHint}
-                />
+            {carouselSlides.map((slide, index) => (
+              <CarouselItem key={slide.id}>
+                <div className="w-full h-full relative">
+                  {slide.image && (
+                     <Image
+                        src={slide.image.imageUrl}
+                        alt={slide.image.description}
+                        fill
+                        className="object-cover"
+                        priority={index === 0}
+                        data-ai-hint={slide.image.imageHint}
+                    />
+                  )}
+                  <div className="absolute inset-0 bg-black/50 flex flex-col items-center justify-center text-center p-4">
+                    <h1 className="font-headline text-4xl md:text-6xl lg:text-7xl font-bold drop-shadow-lg">
+                      {slide.title}
+                    </h1>
+                    <p className="mt-4 max-w-2xl text-lg md:text-xl drop-shadow-md">
+                      {slide.subtitle}
+                    </p>
+                    <Button
+                      asChild
+                      size="lg"
+                      className="mt-8 bg-primary hover:bg-primary/90 text-primary-foreground font-bold text-lg"
+                    >
+                      <Link href={slide.buttonLink}>
+                        {slide.buttonText} <ArrowRight className="ml-2 h-5 w-5" />
+                      </Link>
+                    </Button>
+                  </div>
+                </div>
               </CarouselItem>
             ))}
           </CarouselContent>
         </Carousel>
-        <div className="absolute inset-0 bg-black/50 flex flex-col items-center justify-center text-center p-4">
-          <h1 className="font-headline text-4xl md:text-6xl lg:text-7xl font-bold drop-shadow-lg">
-            AquaBloom Connect
-          </h1>
-          <p className="mt-4 max-w-2xl text-lg md:text-xl drop-shadow-md">
-            Sustainably Cultivating the Future of Fishery and Horticulture
-          </p>
-          <Button
-            asChild
-            size="lg"
-            className="mt-8 bg-primary hover:bg-primary/90 text-primary-foreground font-bold text-lg"
-          >
-            <Link href="/about">
-              Learn More <ArrowRight className="ml-2 h-5 w-5" />
-            </Link>
-          </Button>
-        </div>
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-2">
+
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-2 z-10">
             {scrollSnaps.map((_, index) => (
             <DotButton
                 key={index}
