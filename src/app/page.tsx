@@ -4,7 +4,7 @@
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
-import { BookOpen, Bot, ShoppingBasket, ArrowRight } from 'lucide-react';
+import { BookOpen, Bot, ShoppingBasket, ArrowRight, Fish } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useCallback, useEffect, useState } from 'react';
@@ -71,6 +71,30 @@ const carouselSlidesData = [
   },
 ];
 
+const fishStages = [
+    {
+        id: 'spawn',
+        title: 'Spawn (Fish Eggs)',
+        description:
+        'The journey begins with delicate eggs, which require specific water conditions to develop properly.',
+        imageId: 'fish-spawn',
+    },
+    {
+        id: 'fry',
+        title: 'Fry (Larval Fish)',
+        description:
+        'Once hatched, the tiny fry actively search for food, often schooling together for protection.',
+        imageId: 'fish-fry',
+    },
+    {
+        id: 'fingerling',
+        title: 'Fingerling (Juvenile Fish)',
+        description:
+        'Now about the size of a finger, they are resilient and ideal for stocking larger ponds or aquaculture systems.',
+        imageId: 'fish-fingerling',
+    },
+];
+
 const variants = {
   enter: (direction: number) => {
     return {
@@ -134,12 +158,19 @@ export default function Home() {
     setPage([slideIndex, newDirection]);
   }
 
+  const debouncedPaginate = useCallback(
+    () => {
+      paginate(1);
+    },
+    [page]
+  );
+
   useEffect(() => {
     const interval = setInterval(() => {
-        paginate(1);
+        debouncedPaginate();
     }, 4000);
     return () => clearInterval(interval);
-  }, [page]);
+  }, [debouncedPaginate]);
 
 
   return (
@@ -257,7 +288,53 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-card py-16 md:py-24">
+       <section id="fish-seeds" className="py-16 md:py-24 bg-card">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="font-headline text-3xl md:text-4xl font-bold">
+              The Journey of a Fish Seed
+            </h2>
+            <p className="mt-2 text-lg text-muted-foreground max-w-3xl mx-auto">
+              From a tiny egg to a resilient fingerling, understand the critical stages of fish development.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {fishStages.map((stage) => {
+               const stageImage = PlaceHolderImages.find(img => img.id === stage.imageId);
+               return (
+                <Card key={stage.id} className="flex flex-col overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <CardHeader className="p-0">
+                        <div className="relative aspect-video">
+                        {stageImage && (
+                            <Image
+                                src={stageImage.imageUrl}
+                                alt={stage.title}
+                                fill
+                                className="object-cover"
+                                data-ai-hint={stageImage.imageHint}
+                            />
+                        )}
+                        </div>
+                    </CardHeader>
+                    <CardContent className="p-6 flex-grow">
+                        <CardTitle className="font-headline text-xl mb-2 flex items-center gap-2">
+                           <Fish className="h-6 w-6 text-primary" /> {stage.title}
+                        </CardTitle>
+                        <p className="text-muted-foreground">{stage.description}</p>
+                    </CardContent>
+                </Card>
+               )
+            })}
+          </div>
+           <div className="text-center mt-12">
+                <Button asChild size="lg" className="bg-primary hover:bg-primary/90">
+                    <Link href="/fish-seeds">Learn More About Fish Life Cycles <ArrowRight className="ml-2 h-5 w-5" /></Link>
+                </Button>
+            </div>
+        </div>
+      </section>
+
+      <section className="bg-background py-16 md:py-24">
         <div className="container mx-auto px-4 text-center">
           <h2 className="font-headline text-3xl md:text-4xl font-bold">
             Join Our Community
@@ -278,3 +355,5 @@ export default function Home() {
     </div>
   );
 }
+
+    
