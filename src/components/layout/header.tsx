@@ -43,16 +43,12 @@ const navLinks = [
     label: "Tools & Feeds",
     icon: <Wrench className="h-5 w-5" />,
   },
-  {
-    href: "/marketplace",
-    label: "Marketplace",
-    icon: <ShoppingBasket className="h-5 w-5" />,
-  },
-  {
-    href: "/marketing-suite",
-    label: "AI Suite",
-    icon: <Bot className="h-5 w-5" />,
-  },
+  // {
+  //   href: "/marketplace",
+  //   label: "Marketplace",
+  //   icon: <ShoppingBasket className="h-5 w-5" />,
+  // },
+
   { href: "/about", label: "About Us", icon: <Info className="h-5 w-5" /> },
   { href: "/contact", label: "Contact", icon: <Mail className="h-5 w-5" /> },
 ];
