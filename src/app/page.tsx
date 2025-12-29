@@ -142,15 +142,6 @@ const FishStageSection = () => {
     const ref = useRef(null);
     const isInView = useInView(ref, { once: true, amount: 0.2 });
 
-    const containerVariants = {
-        hidden: {},
-        visible: {
-        transition: {
-            staggerChildren: 0.3,
-        },
-        },
-    };
-
     const itemVariants = {
         hidden: { opacity: 0, y: 50 },
         visible: {
@@ -175,54 +166,68 @@ const FishStageSection = () => {
                     </p>
                 </div>
                 
-                <motion.div
-                    ref={ref}
-                    variants={containerVariants}
-                    initial="hidden"
-                    animate={isInView ? 'visible' : 'hidden'}
-                    className="relative"
-                >
-                    {/* Dotted line connector for large screens */}
-                    <div className="hidden md:block absolute top-1/2 left-0 w-full h-0.5">
-                         <svg width="100%" height="2">
-                            <line x1="0" y1="1" x2="100%" y2="1" strokeWidth="2" strokeDasharray="8 8" className="stroke-primary/50" />
-                        </svg>
-                    </div>
+                <div ref={ref} className="relative">
+                    {/* The vertical timeline line */}
+                    <div className="absolute left-1/2 -translate-x-1/2 h-full w-0.5 bg-primary/20 hidden md:block"></div>
 
-                    <div className="relative flex flex-col md:flex-row justify-between items-center gap-12 md:gap-8">
+                    <div className="space-y-16">
                         {fishStages.map((stage, index) => {
                             const stageImage = PlaceHolderImages.find(img => img.id === stage.imageId);
+                            const isOdd = index % 2 !== 0;
+
                             return (
-                                <motion.div key={stage.id} variants={itemVariants} className="flex-1 w-full z-10">
-                                    <Card className="flex flex-col overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 h-full">
-                                        <CardHeader className="p-0">
-                                            <div className="relative aspect-video">
-                                            {stageImage && (
+                                <motion.div 
+                                    key={stage.id}
+                                    variants={itemVariants}
+                                    initial="hidden"
+                                    animate={isInView ? 'visible' : 'hidden'}
+                                    transition={{ duration: 0.5, delay: index * 0.2 }}
+                                    className="relative"
+                                >
+                                    <div className={cn(
+                                        "md:grid md:grid-cols-2 md:gap-12 items-center",
+                                        isOdd && "md:[direction:rtl]"
+                                    )}>
+                                        <div className="relative aspect-video mb-4 md:mb-0">
+                                             {stageImage && (
                                                 <Image
                                                     src={stageImage.imageUrl}
                                                     alt={stage.title}
                                                     fill
-                                                    className="object-cover"
+                                                    className="object-cover rounded-lg shadow-xl"
                                                     data-ai-hint={stageImage.imageHint}
                                                 />
                                             )}
-                                             <div className="absolute top-2 right-2 bg-primary/80 text-primary-foreground font-bold text-sm px-3 py-1 rounded-full backdrop-blur-sm">
-                                                Phase {index + 1}
+                                        </div>
+                                        
+                                        <div className="md:[direction:ltr] relative">
+                                            {/* Circle on timeline */}
+                                            <div className="absolute left-1/2 -translate-x-1/2 -top-8 hidden md:block">
+                                                <div className="w-4 h-4 bg-primary rounded-full border-4 border-card"></div>
                                             </div>
-                                            </div>
-                                        </CardHeader>
-                                        <CardContent className="p-6 flex-grow flex flex-col">
-                                            <CardTitle className="font-headline text-xl mb-3 flex items-center gap-2">
-                                               <Fish className="h-6 w-6 text-primary" /> {stage.title}
-                                            </CardTitle>
-                                            <p className="text-muted-foreground flex-grow">{stage.description}</p>
-                                        </CardContent>
-                                    </Card>
+
+                                            <Card className="shadow-lg">
+                                                <CardHeader>
+                                                    <div className="flex items-center justify-between">
+                                                        <CardTitle className="font-headline text-xl flex items-center gap-2">
+                                                            <Fish className="h-6 w-6 text-primary" /> {stage.title}
+                                                        </CardTitle>
+                                                        <div className="bg-primary/80 text-primary-foreground font-bold text-sm px-3 py-1 rounded-full backdrop-blur-sm">
+                                                            Phase {index + 1}
+                                                        </div>
+                                                    </div>
+                                                </CardHeader>
+                                                <CardContent>
+                                                    <p className="text-muted-foreground">{stage.description}</p>
+                                                </CardContent>
+                                            </Card>
+                                        </div>
+                                    </div>
                                 </motion.div>
                             )
                         })}
                     </div>
-                </motion.div>
+                </div>
 
                 <div className="text-center mt-16">
                     <Button asChild size="lg" className="bg-primary hover:bg-primary/90">
