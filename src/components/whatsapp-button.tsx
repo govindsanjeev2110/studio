@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { Button } from '@/components/ui/button';
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 // SVG for WhatsApp icon as lucide-react does not have one
 const WhatsAppIcon = (props: React.SVGProps<SVGSVGElement>) => (
@@ -23,9 +23,11 @@ const WhatsAppIcon = (props: React.SVGProps<SVGSVGElement>) => (
 
 export function WhatsAppButton() {
   // Replace with your actual phone number (including country code, without + or spaces)
-  const phoneNumber = '15551234567';
-  const message = "Hello! I'm interested in AquaBloom Connect.";
-  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+  const phoneNumber = "919625628393";
+  const message = "Welcome to Blue Hatch! How can we assist you today?";
+  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
+    message
+  )}`;
 
   return (
     <Button
