@@ -143,7 +143,7 @@ export default function Home() {
             >
           <CarouselContent>
             {carouselSlides.map((slide, index) => (
-              <CarouselItem key={slide.id}>
+              <CarouselItem key={slide.id} className="h-full">
                 <div className="w-full h-full relative">
                   {slide.image && (
                      <Image
