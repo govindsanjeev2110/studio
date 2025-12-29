@@ -7,11 +7,16 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
+  type CarouselApi,
 } from '@/components/ui/carousel';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { BookOpen, Bot, ShoppingBasket, ArrowRight } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useCallback, useEffect, useState } from 'react';
+import Autoplay from "embla-carousel-autoplay"
+import { cn } from '@/lib/utils';
+
 
 const features = [
   {
@@ -37,6 +42,22 @@ const features = [
   },
 ];
 
+type DotButtonProps = {
+  selected: boolean;
+  onClick: () => void;
+};
+
+const DotButton = ({ selected, onClick }: DotButtonProps) => (
+  <button
+    className={cn(
+      'h-3 w-3 rounded-full transition-colors',
+      selected ? 'bg-primary' : 'bg-primary/40'
+    )}
+    type="button"
+    onClick={onClick}
+  />
+);
+
 export default function Home() {
   const carouselImages = [
     'hero-background',
@@ -45,19 +66,58 @@ export default function Home() {
     'product-trout',
   ].map((id) => PlaceHolderImages.find((img) => img.id === id)).filter(Boolean) as (typeof PlaceHolderImages)[0][];
 
+  const [api, setApi] = useState<CarouselApi>()
+  const [current, setCurrent] = useState(0)
+  const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
+
+  const onDotButtonClick = useCallback(
+    (index: number) => {
+      if (!api) return;
+      api.scrollTo(index);
+    },
+    [api]
+  );
+  
+  useEffect(() => {
+    if (!api) {
+      return
+    }
+    setScrollSnaps(api.scrollSnapList());
+    setCurrent(api.selectedScrollSnap())
+
+    const onSelect = () => {
+      setCurrent(api.selectedScrollSnap())
+    }
+    api.on('select', onSelect)
+    
+    return () => {
+      api.off('select', onSelect)
+    }
+  }, [api]);
+
+
   return (
     <div className="flex flex-col">
       <section className="relative w-full h-[60vh] md:h-[80vh] text-white">
-        <Carousel className="w-full h-full" opts={{ loop: true }}>
+        <Carousel 
+            setApi={setApi}
+            className="w-full h-full" opts={{ loop: true }}
+            plugins={[
+                Autoplay({
+                  delay: 4000,
+                  stopOnInteraction: true,
+                }),
+            ]}
+            >
           <CarouselContent>
-            {carouselImages.map((image) => (
+            {carouselImages.map((image, index) => (
               <CarouselItem key={image.id}>
                 <Image
                   src={image.imageUrl}
                   alt={image.description}
                   fill
                   className="object-cover"
-                  priority={carouselImages.indexOf(image) === 0}
+                  priority={index === 0}
                   data-ai-hint={image.imageHint}
                 />
               </CarouselItem>
@@ -80,6 +140,15 @@ export default function Home() {
               Learn More <ArrowRight className="ml-2 h-5 w-5" />
             </Link>
           </Button>
+        </div>
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-2">
+            {scrollSnaps.map((_, index) => (
+            <DotButton
+                key={index}
+                selected={index === current}
+                onClick={() => onDotButtonClick(index)}
+            />
+            ))}
         </div>
       </section>
 
