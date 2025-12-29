@@ -1,16 +1,20 @@
-import { cn } from '@/lib/utils';
-import { Leaf, Fish } from 'lucide-react';
-import Link from 'next/link';
+import { cn } from "@/lib/utils";
+import { Leaf, Fish } from "lucide-react";
+import Link from "next/link";
+import Image from "next/image";
 
 export function Logo({ className }: { className?: string }) {
   return (
     <Link href="/" className={cn("flex items-center gap-2", className)}>
-      <div className="flex items-center justify-center bg-primary/10 p-2 rounded-full">
-         <Fish className="h-6 w-6 text-primary" />
-      </div>
-      <span className="font-headline text-xl font-bold text-foreground hidden sm:inline-block">
-        AquaBloom Connect
-      </span>
+      <Image
+        src="/images/logo.png"
+        width={100}
+        height={100}
+        alt="Blue Hatch"
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        quality={75}
+        loading="lazy"
+      />
     </Link>
   );
 }
