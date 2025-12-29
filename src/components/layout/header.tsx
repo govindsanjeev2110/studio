@@ -56,9 +56,7 @@ function TopBar({ isTransparent }: { isTransparent: boolean }) {
     <div
       className={cn(
         "py-1 transition-colors duration-300",
-        isTransparent
-          ? "bg-transparent text-white"
-          : " text-muted-foreground hover:bg-accent/50 hover:text-accent-foreground"
+        isTransparent ? "bg-transparent text-white" : " text-muted-foreground "
       )}
     >
       <div className="container mx-auto flex items-center justify-between px-4 ">
@@ -67,14 +65,19 @@ function TopBar({ isTransparent }: { isTransparent: boolean }) {
             href="tel:+919625628393"
             className="flex items-center gap-1 hover:underline"
           >
-            <Phone className="h-4 w-4" />
+            <div className="bg-primary/10 p-2 rounded-full">
+              <Phone className="h-4 w-4 text-primary" />
+            </div>
             <span className="text-[16px]">+91 9625628393</span>
           </a>
           <a
             href="mailto:bluehatch04052023@gmail.com"
             className="flex items-center gap-1 hover:underline"
           >
-            <Mail className="h-4 w-4" />
+            <div className="bg-primary/10 p-2 rounded-full">
+              <Mail className="h-4 w-4 text-primary" />
+            </div>
+
             <span className="text-[16px]">bluehatch04052023@gmail.com</span>
           </a>
         </div>
@@ -114,7 +117,7 @@ export function Header() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
+      setIsScrolled(window.scrollY > 5);
     };
 
     if (isHomePage) {
@@ -190,12 +193,7 @@ export function Header() {
             <Button
               variant="link"
               size="icon"
-              className={cn(
-                "md:hidden",
-                isTransparent
-                  ? "bg-white/10 border-white/20 text-white hover:bg-white/20"
-                  : ""
-              )}
+              className={cn("md:hidden", isTransparent ? " text-white" : "")}
             >
               <Menu className="h-6 w-6" />
               <span className="sr-only">Toggle navigation menu</span>

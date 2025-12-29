@@ -14,21 +14,42 @@ import { useRef } from "react";
 const features = [
   {
     icon: <BookOpen className="h-8 w-8 text-primary" />,
-    title: "Informational Hub",
+    title: "Fish and Shrimp Production & Supply",
     description:
       "Access detailed articles and guides on fish farming and horticulture best practices.",
     link: "/resources",
   },
   {
     icon: <ShoppingBasket className="h-8 w-8 text-primary" />,
-    title: "Product Marketplace",
+    title: "Seeds, Feed & Equipment Supply",
     description:
       "A platform connecting farmers directly with buyers to sell fish and horticulture products.",
     link: "/marketplace",
   },
   {
     icon: <Bot className="h-8 w-8 text-primary" />,
-    title: "Marketing & Sales Support",
+    title: "Contract Farming & Marketing Consultancy",
+    description:
+      "Utilize our AI-powered tool to generate marketing content and sales strategies.",
+    link: "/marketing-suite",
+  },
+  {
+    icon: <Bot className="h-8 w-8 text-primary" />,
+    title: "Fish & Shrimp Value Added Products Supply",
+    description:
+      "Utilize our AI-powered tool to generate marketing content and sales strategies.",
+    link: "/marketing-suite",
+  },
+  {
+    icon: <Bot className="h-8 w-8 text-primary" />,
+    title: "Fish & Shrimp farming Consultancy Services",
+    description:
+      "Utilize our AI-powered tool to generate marketing content and sales strategies.",
+    link: "/marketing-suite",
+  },
+  {
+    icon: <Bot className="h-8 w-8 text-primary" />,
+    title: "Training & Capacity Building Programs",
     description:
       "Utilize our AI-powered tool to generate marketing content and sales strategies.",
     link: "/marketing-suite",
@@ -39,34 +60,29 @@ const carouselSlidesData = [
   {
     id: "slide-1",
     imageId: "hero-background",
-    title: "AquaBloom Connect",
-    subtitle: "Sustainably Cultivating the Future of Fishery and Horticulture",
+    title: "Pure Water. Healthy Fish. Honest Farming.",
+    subtitle:
+      "Comprehensive strategies to maximize yield and minimize mortality in commercial fish farming",
     buttonText: "Learn More",
     buttonLink: "/about",
   },
   {
     id: "slide-2",
     imageId: "article-farming-techniques",
-    title: "Explore Our Resources",
-    subtitle: "Access expert articles, guides, and best practices.",
+    title: "Turn Your Water into Wealth",
+    subtitle:
+      "From digging your first pond to your first harvest—get expert guides, proven strategies, and daily insights for aquaculture success",
     buttonText: "View Resources",
     buttonLink: "/resources",
   },
   {
     id: "slide-3",
     imageId: "product-lettuce",
-    title: "Fresh from Farm to Table",
-    subtitle: "Discover high-quality products in our marketplace.",
+    title: "Premium Supplies for a Healthy Harvest",
+    subtitle:
+      "Top-quality feed, medicine, and equipment trusted by India’s leading fish farmers",
     buttonText: "Shop Now",
     buttonLink: "/marketplace",
-  },
-  {
-    id: "slide-4",
-    imageId: "product-trout",
-    title: "Grow Your Business",
-    subtitle: "Leverage our AI tools to boost your marketing and sales.",
-    buttonText: "Try AI Suite",
-    buttonLink: "/marketing-suite",
   },
 ];
 
@@ -97,7 +113,7 @@ const fishStages = [
 const variants = {
   enter: (direction: number) => {
     return {
-      x: direction > 0 ? 1000 : -1000,
+      x: 0,
       opacity: 0,
     };
   },
@@ -109,7 +125,7 @@ const variants = {
   exit: (direction: number) => {
     return {
       zIndex: 0,
-      x: direction < 0 ? 1000 : -1000,
+      x: 0,
       opacity: 0,
     };
   },
@@ -129,7 +145,7 @@ const DotButton = ({ selected, onClick }: DotButtonProps) => (
   <button
     className={cn(
       "h-3 w-3 rounded-full transition-colors",
-      selected ? "bg-primary" : "bg-primary/40"
+      selected ? "bg-primary" : "bg-white/50"
     )}
     type="button"
     onClick={onClick}
@@ -297,8 +313,7 @@ export default function Home() {
             animate="center"
             exit="exit"
             transition={{
-              x: { type: "spring", stiffness: 300, damping: 30 },
-              opacity: { duration: 0.2 },
+              opacity: { duration: 0.5 },
             }}
             drag="x"
             dragConstraints={{ left: 0, right: 0 }}
@@ -324,21 +339,37 @@ export default function Home() {
               />
             )}
             <div className="absolute inset-0 bg-black/50 flex flex-col items-center justify-center text-center p-4">
-              <h1 className="font-headline text-4xl md:text-6xl lg:text-7xl font-bold drop-shadow-lg">
-                {slide.title}
-              </h1>
-              <p className="mt-4 max-w-2xl text-lg md:text-xl drop-shadow-md">
-                {slide.subtitle}
-              </p>
-              <Button
-                asChild
-                size="lg"
-                className="mt-8 bg-primary hover:bg-primary/90 text-primary-foreground font-bold text-lg"
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3, duration: 0.5 }}
+                className="font-headline text-4xl md:text-5xl lg:text-6xl font-bold drop-shadow-lg"
               >
-                <Link href={slide.buttonLink}>
-                  {slide.buttonText} <ArrowRight className="ml-2 h-5 w-5" />
-                </Link>
-              </Button>
+                {slide.title}
+              </motion.h1>
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5, duration: 0.5 }}
+                className="mt-4 max-w-2xl text-lg md:text-xl drop-shadow-md"
+              >
+                {slide.subtitle}
+              </motion.p>
+              {/* <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.7, duration: 0.5 }}
+                    >
+                      <Button
+                        asChild
+                        size="lg"
+                        className="mt-8 bg-primary hover:bg-primary/90 text-primary-foreground font-bold text-lg"
+                      >
+                        <Link href={slide.buttonLink}>
+                          {slide.buttonText} <ArrowRight className="ml-2 h-5 w-5" />
+                        </Link>
+                      </Button>
+                    </motion.div> */}
             </div>
           </motion.div>
         </AnimatePresence>
@@ -362,11 +393,11 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="font-headline text-3xl md:text-4xl font-bold">
-              Our Core Features
+              Our Core Services
             </h2>
             <p className="mt-2 text-lg text-muted-foreground max-w-3xl mx-auto">
               Empowering our members with tools and knowledge for growth and
-              success.
+              success in fish and shrimp farming. Let's explore what we offer.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -387,7 +418,7 @@ export default function Home() {
                   <p className="text-muted-foreground mb-4">
                     {feature.description}
                   </p>
-                  <Button
+                  {/* <Button
                     variant="link"
                     asChild
                     className="text-primary font-bold"
@@ -395,7 +426,7 @@ export default function Home() {
                     <Link href={feature.link}>
                       Explore <ArrowRight className="ml-2 h-4 w-4" />
                     </Link>
-                  </Button>
+                  </Button> */}
                 </CardContent>
               </Card>
             ))}
@@ -403,7 +434,7 @@ export default function Home() {
         </div>
       </section>
 
-      <FishStageSection />
+      {/* <FishStageSection /> */}
 
       <section className="bg-background py-16 md:py-24">
         <div className="container mx-auto px-4 text-center">
@@ -411,15 +442,15 @@ export default function Home() {
             Join Our Community
           </h2>
           <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
-            Become a part of a growing network of fishery and horticulture
-            professionals dedicated to sustainable practices and market success.
+            Become a part of a growing network of fishery professionals
+            dedicated to sustainable practices and market success.
           </p>
           <Button
             asChild
             size="lg"
             className="mt-8 bg-accent hover:bg-accent/90 text-accent-foreground font-bold text-lg"
           >
-            <Link href="/contact">Get in Touch</Link>
+            <Link href="/contact">Call Us Or Send Us Message </Link>
           </Button>
         </div>
       </section>

@@ -3,19 +3,19 @@
     {
       "id": "hero-background",
       "description": "A lush green hydroponics farm with fish tanks, illustrating the synergy of aquaponics.",
-      "imageUrl": "https://images.unsplash.com/photo-1737963194174-9ab15f1cfa75?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxhcXVhcG9uaWNzJTIwZmFybXxlbnwwfHx8fDE3NjcwMDAxOTd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "/images/hero/hero-1.jpeg",
       "imageHint": "aquaponics farm"
     },
     {
       "id": "article-farming-techniques",
       "description": "An overhead shot of various modern farming techniques.",
-      "imageUrl": "https://images.unsplash.com/photo-1580982327559-c1202864eb05?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxmYXJtaW5nJTIwdGVjaG5vbG9neXxlbnwwfHx8fDE3NjcwMDAxOTd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "/images/hero/hero-2.jpeg",
       "imageHint": "farming technology"
     },
     {
       "id": "article-market-trends",
       "description": "A bustling market scene with fresh produce.",
-      "imageUrl": "https://images.unsplash.com/photo-1514425263458-109317cc1321?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxmYXJtZXJzJTIwbWFya2V0fGVufDB8fHx8MTc2Njk5NDYxNnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "/images/hero/hero-3.jpeg",
       "imageHint": "farmers market"
     },
     {
@@ -51,7 +51,7 @@
     {
       "id": "product-lettuce",
       "description": "Crisp, green hydroponic lettuce.",
-      "imageUrl": "https://images.unsplash.com/photo-1744451472267-ae65e6e51096?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxoeWRyb3BvbmljJTIwbGV0dHVjZXxlbnwwfHx8fDE3NjcwMDAxOTd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "/images/hero/hero-3.jpeg",
       "imageHint": "hydroponic lettuce"
     },
     {

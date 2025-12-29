@@ -8,10 +8,9 @@ export function Logo({ className }: { className?: string }) {
     <Link href="/" className={cn("flex items-center gap-2", className)}>
       <Image
         src="/images/logo.png"
-        width={100}
-        height={100}
+        width={64}
+        height={64}
         alt="Blue Hatch"
-        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         quality={75}
         loading="lazy"
       />

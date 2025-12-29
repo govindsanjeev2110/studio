@@ -1,5 +1,5 @@
-import { Logo } from '@/components/logo';
-import { Twitter, Facebook, Instagram } from 'lucide-react';
+import { Logo } from "@/components/logo";
+import { Twitter, Facebook, Instagram } from "lucide-react";
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -7,9 +7,9 @@ export function Footer() {
     <footer className="bg-card border-t">
       <div className="container mx-auto px-4 py-8">
         <div className="flex flex-col items-center justify-between gap-6 md:flex-row">
-          <Logo />
+          {/* <Logo /> */}
           <p className="text-sm text-muted-foreground">
-            &copy; {year} AquaBloom Connect. All rights reserved.
+            &copy; {year} Blue Hatch. All rights reserved.
           </p>
           <div className="flex items-center gap-4">
             <a href="#" className="text-muted-foreground hover:text-primary">
