@@ -3,18 +3,12 @@
 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  type CarouselApi,
-} from '@/components/ui/carousel';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { BookOpen, Bot, ShoppingBasket, ArrowRight } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useCallback, useEffect, useState } from 'react';
-import Autoplay from "embla-carousel-autoplay"
+import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 
 
@@ -77,6 +71,31 @@ const carouselSlidesData = [
   },
 ];
 
+const variants = {
+  enter: (direction: number) => {
+    return {
+      x: direction > 0 ? 1000 : -1000,
+      opacity: 0,
+    };
+  },
+  center: {
+    zIndex: 1,
+    x: 0,
+    opacity: 1,
+  },
+  exit: (direction: number) => {
+    return {
+      zIndex: 0,
+      x: direction < 0 ? 1000 : -1000,
+      opacity: 0,
+    };
+  },
+};
+
+const swipeConfidenceThreshold = 10000;
+const swipePower = (offset: number, velocity: number) => {
+  return Math.abs(offset) * velocity;
+};
 
 type DotButtonProps = {
   selected: boolean;
@@ -95,65 +114,70 @@ const DotButton = ({ selected, onClick }: DotButtonProps) => (
 );
 
 export default function Home() {
-  const [api, setApi] = useState<CarouselApi>()
-  const [current, setCurrent] = useState(0)
-  const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
+  const [[page, direction], setPage] = useState([0, 0]);
 
   const carouselSlides = carouselSlidesData.map(slide => {
     const image = PlaceHolderImages.find(img => img.id === slide.imageId);
     return { ...slide, image };
   }).filter(slide => slide.image);
 
-  const onDotButtonClick = useCallback(
-    (index: number) => {
-      if (!api) return;
-      api.scrollTo(index);
-    },
-    [api]
-  );
-  
-  useEffect(() => {
-    if (!api) {
-      return
-    }
-    setScrollSnaps(api.scrollSnapList());
-    setCurrent(api.selectedScrollSnap())
+  const imageIndex = page % carouselSlides.length;
+  const slide = carouselSlides[imageIndex >= 0 ? imageIndex : imageIndex + carouselSlides.length];
 
-    const onSelect = () => {
-      setCurrent(api.selectedScrollSnap())
-    }
-    api.on('select', onSelect)
-    
-    return () => {
-      api.off('select', onSelect)
-    }
-  }, [api]);
+
+  const paginate = (newDirection: number) => {
+    setPage([page + newDirection, newDirection]);
+  };
+
+  const onDotButtonClick = (slideIndex: number) => {
+    const newDirection = slideIndex > page ? 1 : -1;
+    setPage([slideIndex, newDirection]);
+  }
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+        paginate(1);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, [page]);
 
 
   return (
     <div className="flex flex-col">
-      <section className="relative w-full h-[60vh] md:h-[80vh] text-white">
-        <Carousel 
-            setApi={setApi}
-            className="w-full h-full" opts={{ loop: true }}
-            plugins={[
-                Autoplay({
-                  delay: 4000,
-                  stopOnInteraction: true,
-                }),
-            ]}
+      <section className="relative w-full h-[60vh] md:h-[80vh] text-white overflow-hidden">
+        <AnimatePresence initial={false} custom={direction}>
+            <motion.div
+                key={page}
+                className="w-full h-full absolute inset-0"
+                custom={direction}
+                variants={variants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                transition={{
+                    x: { type: "spring", stiffness: 300, damping: 30 },
+                    opacity: { duration: 0.2 }
+                }}
+                drag="x"
+                dragConstraints={{ left: 0, right: 0 }}
+                dragElastic={1}
+                onDragEnd={(e, { offset, velocity }) => {
+                    const swipe = swipePower(offset.x, velocity.x);
+
+                    if (swipe < -swipeConfidenceThreshold) {
+                    paginate(1);
+                    } else if (swipe > swipeConfidenceThreshold) {
+                    paginate(-1);
+                    }
+                }}
             >
-          <CarouselContent>
-            {carouselSlides.map((slide, index) => (
-              <CarouselItem key={slide.id} className="h-full">
-                <div className="w-full h-full relative">
-                  {slide.image && (
-                     <Image
+                 {slide.image && (
+                    <Image
                         src={slide.image.imageUrl}
                         alt={slide.image.description}
                         fill
                         className="object-cover"
-                        priority={index === 0}
+                        priority={carouselSlides.indexOf(slide) === 0}
                         data-ai-hint={slide.image.imageHint}
                     />
                   )}
@@ -174,17 +198,14 @@ export default function Home() {
                       </Link>
                     </Button>
                   </div>
-                </div>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-        </Carousel>
+            </motion.div>
+        </AnimatePresence>
 
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-2 z-10">
-            {scrollSnaps.map((_, index) => (
+            {carouselSlides.map((_, index) => (
             <DotButton
                 key={index}
-                selected={index === current}
+                selected={(page % carouselSlides.length) === index || (page % carouselSlides.length) === - (carouselSlides.length - index) }
                 onClick={() => onDotButtonClick(index)}
             />
             ))}
