@@ -30,11 +30,11 @@ import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
 
 const navLinks = [
-  {
-    href: "/resources",
-    label: "Resources",
-    icon: <BookOpen className="h-5 w-5" />,
-  },
+  // {
+  //   href: "/resources",
+  //   label: "Resources",
+  //   icon: <BookOpen className="h-5 w-5" />,
+  // },
   {
     href: "/fish-seeds",
     label: "Fish Seeds",

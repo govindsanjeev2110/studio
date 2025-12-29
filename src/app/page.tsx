@@ -11,6 +11,9 @@ import { motion, AnimatePresence, useInView } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { useRef } from "react";
 
+// Since this is a client component, we can't export metadata directly.
+// SEO metadata for this page is managed in `src/app/layout.tsx`.
+
 const features = [
   {
     icon: <BookOpen className="h-8 w-8 text-primary" />,
@@ -59,15 +62,6 @@ const features = [
 const carouselSlidesData = [
   {
     id: "slide-1",
-    imageId: "hero-background",
-    title: "Pure Water. Healthy Fish. Honest Farming.",
-    subtitle:
-      "Comprehensive strategies to maximize yield and minimize mortality in commercial fish farming",
-    buttonText: "Learn More",
-    buttonLink: "/about",
-  },
-  {
-    id: "slide-2",
     imageId: "article-farming-techniques",
     title: "Turn Your Water into Wealth",
     subtitle:
@@ -75,6 +69,16 @@ const carouselSlidesData = [
     buttonText: "View Resources",
     buttonLink: "/resources",
   },
+  {
+    id: "slide-2",
+    imageId: "hero-background",
+    title: "Pure Water. Healthy Fish. Honest Farming.",
+    subtitle:
+      "Comprehensive strategies to maximize yield and minimize mortality in commercial fish farming",
+    buttonText: "Learn More",
+    buttonLink: "/about",
+  },
+
   {
     id: "slide-3",
     imageId: "product-lettuce",
@@ -264,8 +268,89 @@ const FishStageSection = () => {
   );
 };
 
+const FeaturesSection = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.2 });
+
+  const containerVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.2, // This will apply a 0.2s delay between each child animation
+      },
+    },
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut",
+      },
+    },
+  };
+
+  return (
+    <section id="features" className="py-16 md:py-24 bg-background" ref={ref}>
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-12">
+          <h2 className="font-headline text-3xl md:text-4xl font-bold">
+            Our Core Services
+          </h2>
+          <p className="mt-2 text-lg text-muted-foreground max-w-3xl mx-auto">
+            Empowering our members with tools and knowledge for growth and
+            success in fish and shrimp farming. Let's explore what we offer.
+          </p>
+        </div>
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-3 gap-8"
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+        >
+          {features.map((feature, index) => (
+            <motion.div key={feature.title} variants={cardVariants}>
+              <Card className="text-center shadow-lg hover:shadow-xl transition-shadow duration-300 h-full flex flex-col">
+                <CardHeader>
+                  <div className="mx-auto bg-primary/10 p-4 rounded-full w-fit">
+                    {feature.icon}
+                  </div>
+                  <CardTitle className="font-headline mt-4">
+                    {feature.title}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="flex-grow flex flex-col justify-between">
+                  <p className="text-muted-foreground mb-4">
+                    {feature.description}
+                  </p>
+                  {/* <Button
+                    variant="link"
+                    asChild
+                    className="text-primary font-bold mt-auto"
+                  >
+                    <Link href={feature.link}>
+                      Explore <ArrowRight className="ml-2 h-4 w-4" />
+                    </Link>
+                  </Button> */}
+                </CardContent>
+              </Card>
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
+    </section>
+  );
+};
+
 export default function Home() {
   const [[page, direction], setPage] = useState([0, 0]);
+
+  // useEffect(() => {
+  //   document.title = "Blue Hatch | Sustainable Fishery Solutions";
+  // }, []);
 
   const carouselSlides = carouselSlidesData
     .map((slide) => {
@@ -388,7 +473,7 @@ export default function Home() {
           ))}
         </div>
       </section>
-
+      {/* 
       <section id="features" className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
@@ -418,7 +503,7 @@ export default function Home() {
                   <p className="text-muted-foreground mb-4">
                     {feature.description}
                   </p>
-                  {/* <Button
+                   <Button
                     variant="link"
                     asChild
                     className="text-primary font-bold"
@@ -426,13 +511,15 @@ export default function Home() {
                     <Link href={feature.link}>
                       Explore <ArrowRight className="ml-2 h-4 w-4" />
                     </Link>
-                  </Button> */}
+                  </Button> 
                 </CardContent>
               </Card>
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
+
+      <FeaturesSection />
 
       {/* <FishStageSection /> */}
 

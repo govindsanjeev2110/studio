@@ -6,6 +6,19 @@ import {
   CardTitle,
   CardDescription,
 } from "@/components/ui/card";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Contact Us | Blue Hatch",
+  description:
+    "Get in touch with Blue Hatch. We'd love to hear from you whether you have a question, feedback, or a collaboration idea.",
+  openGraph: {
+    title: "Contact Blue Hatch",
+    description:
+      "Reach out to our team for support, inquiries, or to learn more about our platform.",
+  },
+};
+
 import { ContactForm } from "./contact-form";
 
 export default function ContactPage() {
