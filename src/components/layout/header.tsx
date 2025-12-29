@@ -7,7 +7,7 @@ import {
   SheetClose,
 } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
-import { Menu, X, BookOpen, ShoppingBasket, Bot, Info, Mail, Fish, Phone, Twitter, Facebook, Instagram } from 'lucide-react';
+import { Menu, X, BookOpen, ShoppingBasket, Bot, Info, Mail, Fish, Phone, Twitter, Facebook, Instagram, Wrench } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Logo } from '@/components/logo';
@@ -16,6 +16,7 @@ import { cn } from '@/lib/utils';
 const navLinks = [
   { href: '/resources', label: 'Resources', icon: <BookOpen className="h-5 w-5" /> },
   { href: '/fish-seeds', label: 'Fish Seeds', icon: <Fish className="h-5 w-5" /> },
+  { href: '/tools-and-feeds', label: 'Tools & Feeds', icon: <Wrench className="h-5 w-5" /> },
   { href: '/marketplace', label: 'Marketplace', icon: <ShoppingBasket className="h-5 w-5" /> },
   { href: '/marketing-suite', label: 'AI Suite', icon: <Bot className="h-5 w-5" /> },
   { href: '/about', label: 'About Us', icon: <Info className="h-5 w-5" /> },

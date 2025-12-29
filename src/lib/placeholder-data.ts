@@ -102,3 +102,42 @@ export const teamMembers = [
     imageId: 'team-member-4',
   },
 ];
+
+export const toolsAndFeeds = [
+  {
+    id: 'fishing-nets',
+    name: 'Durable Fishing Nets',
+    description: 'High-quality, durable nets suitable for various types of fish and different environments, from small ponds to large rivers.',
+    imageId: 'tools-nets',
+  },
+  {
+    id: 'premium-fish-feed',
+    name: 'Premium Fish Feed',
+    description: 'Nutritionally balanced fish feed to promote healthy growth and vibrant colors in your fish population.',
+    imageId: 'tools-feed',
+  },
+  {
+    id: 'pond-aerators',
+    name: 'Pond Aerators',
+    description: 'Essential for maintaining optimal oxygen levels in your pond, ensuring a healthy environment for your fish.',
+    imageId: 'tools-aerator',
+  },
+  {
+    id: 'water-testing-kits',
+    name: 'Water Testing Kits',
+    description: 'Easy-to-use kits to monitor pH, ammonia, nitrite, and nitrate levels, crucial for maintaining water quality.',
+    imageId: 'tools-testing-kit',
+  },
+  {
+    id: 'harvesting-equipment',
+    name: 'Fish Harvesting Equipment',
+    description: 'A range of tools designed for efficient and humane fish harvesting, including seines and grading equipment.',
+    imageId: 'tools-harvesting',
+  },
+  {
+    id: 'automatic-feeders',
+    name: 'Automatic Fish Feeders',
+    description: 'Save time and ensure consistent feeding schedules for your fish with our reliable automatic feeders.',
+    imageId: 'tools-auto-feeder',
+  }
+];

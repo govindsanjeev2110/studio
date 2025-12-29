@@ -113,6 +113,42 @@
       "description": "Juvenile fish (fingerlings) in a natural pond, bigger than fry.",
       "imageUrl": "https://images.unsplash.com/photo-1632247620298-0f46fb7955be?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxqdXZlbmlsZSUyMGZpc2h8ZW58MHx8fHwxNzY3MDAyOTg2fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "juvenile fish"
+    },
+    {
+      "id": "tools-nets",
+      "description": "Fishing nets piled on a dock.",
+      "imageUrl": "https://images.unsplash.com/photo-1573489347535-f82736b72a40?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxmaXNoaW5nJTIwbmV0fGVufDB8fHx8MTY4OTg1NzQ2Nnww&ixlib=rb-4.0.3&q=80&w=1080",
+      "imageHint": "fishing net"
+    },
+    {
+      "id": "tools-feed",
+      "description": "Close-up of pellet fish feed.",
+      "imageUrl": "https://images.unsplash.com/photo-1599494883907-2f3479a49c69?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxmaXNoJTIwZmVlZHxlbnwwfHx8fDE2ODk4NTc1MjR8MA&ixlib=rb-4.0.3&q=80&w=1080",
+      "imageHint": "fish feed"
+    },
+    {
+      "id": "tools-aerator",
+      "description": "An aerator creating bubbles in a fish pond.",
+      "imageUrl": "https://images.unsplash.com/photo-1608303598379-96263e8082e1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxwb25kJTIwYWVyYXRvcnxlbnwwfHx8fDE2ODk4NTc1NTV8MA&ixlib=rb-4.0.3&q=80&w=1080",
+      "imageHint": "pond aerator"
+    },
+    {
+      "id": "tools-testing-kit",
+      "description": "A person using a water testing kit by a pond.",
+      "imageUrl": "https://images.unsplash.com/photo-1633934533147-3507d9b93e0d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx3YXRlciUyMHRlc3RpbmclMjBraXR8ZW58MHx8fHwxNjg5ODU3NjAxfDA&ixlib=rb-4.0.3&q=80&w=1080",
+      "imageHint": "water testing"
+    },
+    {
+      "id": "tools-harvesting",
+      "description": "Workers harvesting fish from a large farm pond.",
+      "imageUrl": "https://images.unsplash.com/photo-1599049449835-bd916b9d62d2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxmaXNoJTIwaGFydmVzdGluZ3xlbnwwfHx8fDE2ODk4NTc2NDJ8MA&ixlib=rb-4.0.3&q=80&w=1080",
+      "imageHint": "fish harvesting"
+    },
+    {
+      "id": "tools-auto-feeder",
+      "description": "An automatic fish feeder mounted on the edge of a pond.",
+      "imageUrl": "https://images.unsplash.com/photo-1616892329381-84e4e94b2f15?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxhdXRvbWF0aWMlMjBmaXNoJTIwZmVlZGVyfGVufDB8fHx8MTY4OTg1NzY4NXww&ixlib=rb-4.0.3&q=80&w=1080",
+      "imageHint": "automatic feeder"
     }
   ]
 }
