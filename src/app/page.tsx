@@ -8,8 +8,9 @@ import { BookOpen, Bot, ShoppingBasket, ArrowRight, Fish } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useCallback, useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useInView } from 'framer-motion';
 import { cn } from '@/lib/utils';
+import { useRef } from 'react';
 
 
 const features = [
@@ -136,6 +137,103 @@ const DotButton = ({ selected, onClick }: DotButtonProps) => (
     onClick={onClick}
   />
 );
+
+const FishStageSection = () => {
+    const ref = useRef(null);
+    const isInView = useInView(ref, { once: true, amount: 0.2 });
+
+    const containerVariants = {
+        hidden: {},
+        visible: {
+        transition: {
+            staggerChildren: 0.3,
+        },
+        },
+    };
+
+    const itemVariants = {
+        hidden: { opacity: 0, y: 50 },
+        visible: {
+        opacity: 1,
+        y: 0,
+        transition: {
+            duration: 0.5,
+            ease: 'easeOut',
+        },
+        },
+    };
+
+    return (
+        <section id="fish-seeds" className="py-16 md:py-24 bg-card">
+            <div className="container mx-auto px-4">
+                <div className="text-center mb-16">
+                    <h2 className="font-headline text-3xl md:text-4xl font-bold">
+                        The Journey of a Fish Seed
+                    </h2>
+                    <p className="mt-2 text-lg text-muted-foreground max-w-3xl mx-auto">
+                        From a tiny egg to a resilient fingerling, understand the critical stages of fish development.
+                    </p>
+                </div>
+                
+                <motion.div
+                    ref={ref}
+                    variants={containerVariants}
+                    initial="hidden"
+                    animate={isInView ? 'visible' : 'hidden'}
+                    className="relative"
+                >
+                    {/* Dotted line connector for large screens */}
+                    <div className="hidden md:block absolute top-1/2 left-0 w-full h-0.5">
+                         <svg width="100%" height="2">
+                            <line x1="0" y1="1" x2="100%" y2="1" strokeWidth="2" strokeDasharray="8 8" className="stroke-primary/50" />
+                        </svg>
+                    </div>
+
+                    <div className="relative flex flex-col md:flex-row justify-between items-center gap-12 md:gap-8">
+                        {fishStages.map((stage, index) => {
+                            const stageImage = PlaceHolderImages.find(img => img.id === stage.imageId);
+                            return (
+                                <motion.div key={stage.id} variants={itemVariants} className="flex-1 w-full z-10">
+                                    <Card className="flex flex-col overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 h-full">
+                                        <CardHeader className="p-0">
+                                            <div className="relative aspect-video">
+                                            {stageImage && (
+                                                <Image
+                                                    src={stageImage.imageUrl}
+                                                    alt={stage.title}
+                                                    fill
+                                                    className="object-cover"
+                                                    data-ai-hint={stageImage.imageHint}
+                                                />
+                                            )}
+                                             <div className="absolute top-2 right-2 bg-primary/80 text-primary-foreground font-bold text-sm px-3 py-1 rounded-full backdrop-blur-sm">
+                                                Phase {index + 1}
+                                            </div>
+                                            </div>
+                                        </CardHeader>
+                                        <CardContent className="p-6 flex-grow flex flex-col">
+                                            <CardTitle className="font-headline text-xl mb-3 flex items-center gap-2">
+                                               <Fish className="h-6 w-6 text-primary" /> {stage.title}
+                                            </CardTitle>
+                                            <p className="text-muted-foreground flex-grow">{stage.description}</p>
+                                        </CardContent>
+                                    </Card>
+                                </motion.div>
+                            )
+                        })}
+                    </div>
+                </motion.div>
+
+                <div className="text-center mt-16">
+                    <Button asChild size="lg" className="bg-primary hover:bg-primary/90">
+                        <Link href="/fish-seeds">Learn More About Fish Life Cycles <ArrowRight className="ml-2 h-5 w-5" /></Link>
+                    </Button>
+                </div>
+            </div>
+      </section>
+    );
+};
+
 
 export default function Home() {
   const [[page, direction], setPage] = useState([0, 0]);
@@ -288,51 +386,7 @@ export default function Home() {
         </div>
       </section>
 
-       <section id="fish-seeds" className="py-16 md:py-24 bg-card">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="font-headline text-3xl md:text-4xl font-bold">
-              The Journey of a Fish Seed
-            </h2>
-            <p className="mt-2 text-lg text-muted-foreground max-w-3xl mx-auto">
-              From a tiny egg to a resilient fingerling, understand the critical stages of fish development.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {fishStages.map((stage) => {
-               const stageImage = PlaceHolderImages.find(img => img.id === stage.imageId);
-               return (
-                <Card key={stage.id} className="flex flex-col overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
-                    <CardHeader className="p-0">
-                        <div className="relative aspect-video">
-                        {stageImage && (
-                            <Image
-                                src={stageImage.imageUrl}
-                                alt={stage.title}
-                                fill
-                                className="object-cover"
-                                data-ai-hint={stageImage.imageHint}
-                            />
-                        )}
-                        </div>
-                    </CardHeader>
-                    <CardContent className="p-6 flex-grow">
-                        <CardTitle className="font-headline text-xl mb-2 flex items-center gap-2">
-                           <Fish className="h-6 w-6 text-primary" /> {stage.title}
-                        </CardTitle>
-                        <p className="text-muted-foreground">{stage.description}</p>
-                    </CardContent>
-                </Card>
-               )
-            })}
-          </div>
-           <div className="text-center mt-12">
-                <Button asChild size="lg" className="bg-primary hover:bg-primary/90">
-                    <Link href="/fish-seeds">Learn More About Fish Life Cycles <ArrowRight className="ml-2 h-5 w-5" /></Link>
-                </Button>
-            </div>
-        </div>
-      </section>
+       <FishStageSection />
 
       <section className="bg-background py-16 md:py-24">
         <div className="container mx-auto px-4 text-center">
@@ -355,5 +409,3 @@ export default function Home() {
     </div>
   );
 }
-
-    
