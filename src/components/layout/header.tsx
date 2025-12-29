@@ -7,7 +7,7 @@ import {
   SheetClose,
 } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
-import { Menu, X, BookOpen, ShoppingBasket, Bot, Info, Mail, Fish } from 'lucide-react';
+import { Menu, X, BookOpen, ShoppingBasket, Bot, Info, Mail, Fish, Phone, Twitter, Facebook, Instagram } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Logo } from '@/components/logo';
@@ -21,6 +21,39 @@ const navLinks = [
   { href: '/about', label: 'About Us', icon: <Info className="h-5 w-5" /> },
   { href: '/contact', label: 'Contact', icon: <Mail className="h-5 w-5" /> },
 ];
+
+function TopBar() {
+  return (
+    <div className="bg-primary text-primary-foreground py-1">
+      <div className="container mx-auto flex items-center justify-between px-4 text-xs">
+        <div className="flex items-center gap-4">
+          <a href="tel:+15551234567" className="flex items-center gap-1 hover:underline">
+            <Phone className="h-3 w-3" />
+            <span>+1 (555) 123-4567</span>
+          </a>
+          <a href="mailto:hello@aquabloom.connect" className="flex items-center gap-1 hover:underline">
+            <Mail className="h-3 w-3" />
+            <span>hello@aquabloom.connect</span>
+          </a>
+        </div>
+        <div className="flex items-center gap-3">
+            <a href="#" className="hover:opacity-80">
+              <Twitter className="h-4 w-4" />
+              <span className="sr-only">Twitter</span>
+            </a>
+            <a href="#" className="hover:opacity-80">
+              <Facebook className="h-4 w-4" />
+              <span className="sr-only">Facebook</span>
+            </a>
+            <a href="#" className="hover:opacity-80">
+              <Instagram className="h-4 w-4" />
+              <span className="sr-only">Instagram</span>
+            </a>
+        </div>
+      </div>
+    </div>
+  )
+}
 
 export function Header() {
   const pathname = usePathname();
@@ -56,8 +89,9 @@ export function Header() {
   };
   
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-card shadow-sm">
-      <div className="container mx-auto flex h-16 items-center justify-between px-4">
+    <header className="sticky top-0 z-50 w-full bg-card shadow-sm">
+      <TopBar />
+      <div className="container mx-auto flex h-16 items-center justify-between px-4 border-t">
         <Logo />
         <nav className="hidden items-center gap-1 md:flex">
           {navLinks.map((link) => (
