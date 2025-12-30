@@ -149,6 +149,66 @@
       "description": "An automatic fish feeder mounted on the edge of a pond.",
       "imageUrl": "https://images.unsplash.com/photo-1616892329381-84e4e94b2f15?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxhdXRvbWF0aWMlMjBmaXNoJTIwZmVlZGVyfGVufDB8fHx8MTY4OTg1NzY4NXww&ixlib=rb-4.0.3&q=80&w=1080",
       "imageHint": "automatic feeder"
+    },
+    {
+      "id": "gallery-image-1",
+      "description": "A vibrant coral reef teeming with fish.",
+      "imageUrl": "/images/gallery/img-1.jpeg",
+      "imageHint": "coral reef"
+    },
+    {
+      "id": "gallery-image-2",
+      "description": "A worker tending to plants in a large-scale hydroponics farm.",
+      "imageUrl": "/images/gallery/img-2.jpeg",
+      "imageHint": "modern farming"
+    },
+    {
+      "id": "gallery-image-3",
+      "description": "Close-up of a brightly colored tropical fish.",
+      "imageUrl": "/images/gallery/img-3.jpeg",
+      "imageHint": "tropical fish"
+    },
+    {
+      "id": "gallery-image-4",
+      "description": "Sunlight filtering through the leaves of plants in a greenhouse.",
+      "imageUrl": "/images/gallery/img-4.jpeg",
+      "imageHint": "greenhouse sunlight"
+    },
+    {
+      "id": "gallery-image-5",
+      "description": "A school of silver fish swimming in unison.",
+      "imageUrl": "/images/gallery/img-5.jpeg",
+      "imageHint": "school fish"
+    },
+    {
+      "id": "gallery-image-6",
+      "description": "Rows of fresh lettuce growing in a vertical farm.",
+      "imageUrl": "/images/gallery/img-6.jpeg",
+      "imageHint": "vertical farm"
+    },
+    {
+      "id": "gallery-image-7",
+      "description": "A fisherman casting a net into the water at sunset.",
+      "imageUrl": "/images/gallery/img-7.jpeg",
+      "imageHint": "fisherman net"
+    },
+    {
+      "id": "gallery-image-8",
+      "description": "A close-up of ripe, red strawberries ready for harvest.",
+      "imageUrl": "/images/gallery/img-8.jpeg",
+      "imageHint": "strawberry field"
+    },
+    {
+      "id": "gallery-image-9",
+      "description": "A fisherman casting a net into the water at sunset.",
+      "imageUrl": "/images/gallery/img-9.jpeg",
+      "imageHint": "fisherman net"
+    },
+    {
+      "id": "gallery-image-10",
+      "description": "A close-up of ripe, red strawberries ready for harvest.",
+      "imageUrl": "/images/gallery/img-10.jpeg",
+      "imageHint": "strawberry field"
     }
   ]
 }

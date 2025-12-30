@@ -22,6 +22,7 @@ import {
   Instagram,
   Wrench,
   Home,
+  EllipsisVertical,
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -60,7 +61,7 @@ function TopBar({ isTransparent }: { isTransparent: boolean }) {
       )}
     >
       <div className="container mx-auto flex items-center justify-between px-4 ">
-        <div className="flex flex-col md:flex-row items-center gap-2 md:gap-4">
+        <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-4">
           <a
             href="tel:+919625628393"
             className="flex items-center gap-1 hover:underline"
@@ -176,7 +177,7 @@ export function Header() {
       {/* <TopBar isTransparent={isTransparent} /> */}
       <div
         className={cn(
-          "container mx-auto flex h-30 items-center justify-between px-4 transition-colors duration-300",
+          "container mx-auto flex h-30 items-center justify-between px-2 md:px-4 transition-colors duration-300",
           isTransparent ? "border-transparent" : "border-t"
         )}
       >
@@ -190,24 +191,30 @@ export function Header() {
         <TopBar isTransparent={isTransparent} />
         <Sheet>
           <SheetTrigger asChild>
-            <Button
+            {/* <Button
               variant="link"
               size="icon"
-              className={cn("md:hidden", isTransparent ? " text-white" : "")}
-            >
-              <Menu className="h-6 w-6" />
-              <span className="sr-only">Toggle navigation menu</span>
-            </Button>
+              className={cn("md:hidden", isTransparent ? " text-white " : "")}
+            > */}
+            <EllipsisVertical
+              className={cn(
+                "md:hidden",
+                isTransparent ? " text-white " : "text-blue-500"
+              )}
+            />
+            {/* <Menu className=" text-blue-500 h-11" /> */}
+            {/* <span className="sr-only">Toggle navigation menu</span>
+            </Button> */}
           </SheetTrigger>
           <SheetContent side="right">
             <div className="flex flex-col">
               <div className="mb-6 flex items-center justify-between">
                 <Logo />
-                <SheetClose asChild>
+                {/* <SheetClose asChild>
                   <Button variant="ghost" size="icon">
                     <X className="h-6 w-6" />
                   </Button>
-                </SheetClose>
+                </SheetClose> */}
               </div>
               <nav className="grid gap-2 text-lg font-medium">
                 <SheetClose asChild>

@@ -3,7 +3,14 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
-import { BookOpen, Bot, ShoppingBasket, ArrowRight, Fish } from "lucide-react";
+import {
+  BookOpen,
+  Bot,
+  ShoppingBasket,
+  ArrowRight,
+  Fish,
+  GalleryHorizontal,
+} from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
@@ -345,6 +352,61 @@ const FeaturesSection = () => {
   );
 };
 
+const GallerySection = () => {
+  const galleryImages = PlaceHolderImages.filter((img) =>
+    img.id.startsWith("gallery-image-")
+  ).slice(0, 8); // Limit to 8 images for the homepage
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.1 });
+
+  return (
+    <section id="gallery" className="py-8 md:py-16 bg-blue-200/10" ref={ref}>
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-12">
+          <h2 className="font-headline text-3xl md:text-4xl font-bold">
+            From Our Farms
+          </h2>
+          <p className="mt-2 text-lg text-muted-foreground max-w-3xl mx-auto">
+            A visual journey into the world of sustainable fishery and
+            horticulture.
+          </p>
+        </div>
+
+        <motion.div
+          className="columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4"
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : {}}
+          transition={{ duration: 0.8 }}
+        >
+          {galleryImages.map((image) => (
+            <div
+              key={image.id}
+              className="overflow-hidden rounded-lg shadow-lg break-inside-avoid transform hover:scale-105 transition-transform duration-300"
+            >
+              <Image
+                src={image.imageUrl}
+                alt={image.description}
+                width={500}
+                height={500}
+                className="h-auto w-full object-cover"
+                data-ai-hint={image.imageHint}
+              />
+            </div>
+          ))}
+        </motion.div>
+
+        {/* <div className="text-center mt-12">
+          <Button asChild size="lg" className="bg-primary hover:bg-primary/90">
+            <Link href="/gallery">
+              View Full Gallery <ArrowRight className="ml-2 h-5 w-5" />
+            </Link>
+          </Button>
+        </div> */}
+      </div>
+    </section>
+  );
+};
+
 export default function Home() {
   const [[page, direction], setPage] = useState([0, 0]);
 
@@ -521,7 +583,7 @@ export default function Home() {
 
       <FeaturesSection />
 
-      {/* <FishStageSection /> */}
+      <GallerySection />
 
       <section className="bg-background py-16 md:py-24">
         <div className="container mx-auto px-4 text-center">

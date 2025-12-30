@@ -5,7 +5,10 @@ import Image from "next/image";
 
 export function Logo({ className }: { className?: string }) {
   return (
-    <Link href="/" className={cn("flex items-center gap-2", className)}>
+    <Link
+      href="/"
+      className={cn("hidden md:flex md:items-center md:gap-2", className)}
+    >
       <Image
         src="/images/logo.png"
         width={64}
