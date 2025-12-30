@@ -1,8 +1,15 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from "@/components/ui/card";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
+import { recognitions } from "@/lib/placeholder-data";
 import {
   BookOpen,
   Bot,
@@ -10,6 +17,7 @@ import {
   ArrowRight,
   Fish,
   GalleryHorizontal,
+  Award,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -359,6 +367,27 @@ const GallerySection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
 
+  const containerVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.2, // This will apply a 0.2s delay between each child animation
+      },
+    },
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut",
+      },
+    },
+  };
+
   return (
     <section id="gallery" className="py-8 md:py-16 bg-blue-200/10" ref={ref}>
       <div className="container mx-auto px-4">
@@ -367,20 +396,20 @@ const GallerySection = () => {
             From Our Farms
           </h2>
           <p className="mt-2 text-lg text-muted-foreground max-w-3xl mx-auto">
-            A visual journey into the world of sustainable fishery and
-            horticulture.
+            A visual journey of our fish & shrimp farm and products.
           </p>
         </div>
 
         <motion.div
           className="columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4"
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.8 }}
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
         >
           {galleryImages.map((image) => (
-            <div
+            <motion.div
               key={image.id}
+              variants={cardVariants}
               className="overflow-hidden rounded-lg shadow-lg break-inside-avoid transform hover:scale-105 transition-transform duration-300"
             >
               <Image
@@ -391,7 +420,7 @@ const GallerySection = () => {
                 className="h-auto w-full object-cover"
                 data-ai-hint={image.imageHint}
               />
-            </div>
+            </motion.div>
           ))}
         </motion.div>
 
@@ -402,6 +431,83 @@ const GallerySection = () => {
             </Link>
           </Button>
         </div> */}
+      </div>
+    </section>
+  );
+};
+
+const RecognitionsSection = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.2 });
+
+  const containerVariants = {
+    hidden: {},
+    visible: {
+      transition: { staggerChildren: 0.2 },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, ease: "easeOut" },
+    },
+  };
+
+  return (
+    <section id="recognitions" className="py-16 md:py-24 bg-card">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-12">
+          <h2 className="font-headline text-3xl md:text-4xl font-bold">
+            Training & Recognitions
+          </h2>
+          <p className="mt-2 text-lg text-muted-foreground max-w-3xl mx-auto">
+            Our commitment to excellence is recognized by industry leaders.
+          </p>
+        </div>
+        <motion.div
+          ref={ref}
+          className="grid grid-cols-1 md:grid-cols-3 gap-8"
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+        >
+          {recognitions.map((recognition) => {
+            const certImage = PlaceHolderImages.find(
+              (img) => img.id === recognition.imageId
+            );
+            return (
+              <motion.div key={recognition.id} variants={itemVariants}>
+                <Card className="overflow-hidden text-center shadow-lg hover:shadow-xl transition-shadow duration-300 h-full flex flex-col">
+                  <CardHeader className="p-0">
+                    <div className="relative aspect-[4/3] bg-muted">
+                      {certImage && (
+                        <Image
+                          src={certImage.imageUrl}
+                          alt={recognition.title}
+                          fill
+                          className="object-contain p-2"
+                          data-ai-hint={certImage.imageHint}
+                        />
+                      )}
+                    </div>
+                  </CardHeader>
+                  <CardContent className="p-6 flex-grow flex flex-col justify-center">
+                    <h3 className="font-headline text-lg font-bold flex items-center justify-center gap-2">
+                      <Award className="h-5 w-5 text-accent" />{" "}
+                      {recognition.title}
+                    </h3>
+                    <p className="text-sm text-muted-foreground mt-1">
+                      Issued by {recognition.issuer}
+                    </p>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            );
+          })}
+        </motion.div>
       </div>
     </section>
   );
@@ -443,7 +549,7 @@ export default function Home() {
   useEffect(() => {
     const interval = setInterval(() => {
       debouncedPaginate();
-    }, 4000);
+    }, 8000);
     return () => clearInterval(interval);
   }, [debouncedPaginate]);
 
@@ -584,6 +690,7 @@ export default function Home() {
       <FeaturesSection />
 
       <GallerySection />
+      <RecognitionsSection />
 
       <section className="bg-background py-16 md:py-24">
         <div className="container mx-auto px-4 text-center">
