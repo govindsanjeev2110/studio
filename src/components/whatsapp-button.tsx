@@ -40,7 +40,8 @@ const WhatsAppIcon = (props: React.SVGProps<SVGSVGElement>) => (
 export function WhatsAppButton() {
   // Replace with your actual phone number (including country code, without + or spaces)
   const phoneNumber = "919625628393";
-  const message = "Welcome to Blue Hatch! How can we assist you today?";
+  const message =
+    "Hello! I'm interested in learning more about Fish and Shrimp Farming.";
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
     message
   )}`;

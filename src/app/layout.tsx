@@ -21,7 +21,6 @@ export default function RootLayout({
 }>) {
   const pathname = usePathname();
   const isHomePage = pathname === "/";
-  const heroImage = PlaceHolderImages.find((p) => p.id === "hero-background");
 
   return (
     <html lang="en" className="scroll-smooth">
@@ -31,7 +30,7 @@ export default function RootLayout({
             <title>Blue Hatch | Sustainable Fishery Solutions</title>
             <meta
               name="description"
-              content="Sustainably Cultivating the Future of Fish and Shrimp Farming. "
+              content="Sustainably cultivating the future of fish and shrimp farming"
             />
             <meta
               property="og:title"
@@ -39,11 +38,14 @@ export default function RootLayout({
             />
             <meta
               property="og:description"
-              content="Sustainably Cultivating the Future of Fish and Shrimp Farming. "
+              content="Sustainably cultivating the future of fish and shrimp farming "
             />
-            {heroImage && (
-              <meta property="og:image" content={heroImage.imageUrl} />
-            )}
+
+            <meta
+              property="og:image"
+              content="https://www.bluehatch.in/images/og.png"
+            />
+
             <meta property="og:url" content="https://bluehatch.in" />
             <meta property="og:type" content="website" />
           </>
