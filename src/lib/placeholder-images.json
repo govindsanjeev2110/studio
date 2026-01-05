@@ -233,6 +233,12 @@
       "description": "Certificate of Recognition from DPIIT-Govt of India.",
       "imageUrl": "/images/certificates/cert-4.jpg",
       "imageHint": "certificate award"
+    },
+    {
+      "id": "presentation-video",
+      "description": "A video showcasing modern fish farming techniques.",
+      "imageUrl": "/video/test.mp4",
+      "imageHint": "fish farming"
     }
   ]
 }

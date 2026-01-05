@@ -513,6 +513,101 @@ const RecognitionsSection = () => {
   );
 };
 
+const videoSlidesData = [
+  {
+    title: "Traditional Farming with Modern technology",
+    description:
+      "At Bluehatch, we merge technology with tradition, creating sustainable cycles where fish and ponds thrive together.",
+  },
+  {
+    title: "Healthy Harvesting",
+    description:
+      "We try to reduce water usage, eliminate chemical fertilizers, and produce healthier, organic products.",
+  },
+  {
+    title: "Value Added Products",
+    description:
+      "We are committed to advancing fish and shrimp production with value added products",
+  },
+];
+
+const VideoPresentationSection = () => {
+  const videoData = PlaceHolderImages.find(
+    (p) => p.id === "presentation-video"
+  );
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.2 });
+  const [[page, direction], setPage] = useState([0, 0]);
+
+  const slideIndex = page % videoSlidesData.length;
+  const activeSlide =
+    videoSlidesData[
+      slideIndex >= 0 ? slideIndex : slideIndex + videoSlidesData.length
+    ];
+
+  const paginate = useCallback(() => {
+    setPage((prev) => [prev[0] + 1, 1]);
+  }, []);
+
+  useEffect(() => {
+    const interval = setInterval(paginate, 5000);
+    return () => clearInterval(interval);
+  }, [paginate]);
+
+  if (!videoData) return null;
+
+  return (
+    <section
+      ref={ref}
+      className="relative py-24 md:py-32 h-[80vh] min-h-[600px] overflow-hidden text-white flex items-end"
+    >
+      <video
+        key={videoData.imageUrl}
+        src={videoData.imageUrl}
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute top-0 left-0 w-full h-full object-cover z-0"
+        data-ai-hint={videoData.imageHint}
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent z-10"></div>
+
+      <div className="container mx-auto px-4 relative z-20 w-full">
+        <div className="max-w-2xl">
+          <AnimatePresence initial={false} custom={direction}>
+            <motion.div
+              key={page}
+              custom={direction}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.6, ease: "easeInOut" }}
+              className="text-left"
+            >
+              <h2 className="font-headline text-3xl md:text-5xl font-bold">
+                {activeSlide.title}
+              </h2>
+              <p className="mt-4 text-lg md:text-xl text-white/90">
+                {activeSlide.description}
+              </p>
+            </motion.div>
+          </AnimatePresence>
+          {/* <Button
+            asChild
+            size="lg"
+            className="mt-8 bg-primary hover:bg-primary/90"
+          >
+            <Link href="/about">
+              Learn About Our Mission <ArrowRight className="ml-2 h-5 w-5" />
+            </Link>
+          </Button> */}
+        </div>
+      </div>
+    </section>
+  );
+};
+
 export default function Home() {
   const [[page, direction], setPage] = useState([0, 0]);
 
@@ -688,6 +783,7 @@ export default function Home() {
       </section> */}
 
       <FeaturesSection />
+      <VideoPresentationSection />
 
       <GallerySection />
       <RecognitionsSection />

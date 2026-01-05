@@ -1,6 +1,6 @@
 import { MetadataRoute } from "next";
 
-const URL = "https://bluehatch.in"; // Replace with your actual domain
+const URL = "https://bluehatch.in";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const routes = [
