@@ -16,8 +16,8 @@ export default function AboutPage() {
           About Blue Hatch
         </h1>
         <p className="mt-4 max-w-3xl mx-auto text-lg text-muted-foreground">
-          Fostering innovation and collaboration in fishery and horticulture for
-          a sustainable future.
+          Fostering innovation and collaboration in fishery and shrimp farming
+          for a sustainable future.
         </p>
       </div>
 
@@ -28,11 +28,11 @@ export default function AboutPage() {
               Our Mission & Vision
             </h2>
             <p>
-              Our mission is to empower fishery and horticulture professionals
-              by providing a connected ecosystem for knowledge sharing, trade,
-              and growth. We believe in the power of technology to bridge gaps,
-              foster sustainable practices, and create a prosperous future for
-              our members and the planet.
+              Our mission is to empower fishery and shrimp farmers by providing
+              a connected ecosystem for knowledge sharing, trade, and growth. We
+              believe in the power of technology to bridge gaps, foster
+              sustainable practices, and create a prosperous future for our
+              members and the planet.
             </p>
             <p>
               We envision a world where food production is both abundant and in
@@ -65,7 +65,7 @@ export default function AboutPage() {
             The passionate individuals driving our mission forward.
           </p>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+        {/* <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
           {teamMembers.map((member) => {
             const memberImage = PlaceHolderImages.find(
               (img) => img.id === member.imageId
@@ -94,7 +94,7 @@ export default function AboutPage() {
               </Card>
             );
           })}
-        </div>
+        </div> */}
       </section>
     </div>
   );
